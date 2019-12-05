@@ -1,6 +1,10 @@
 package controleurEtVue;
 	
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
+
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.stage.Stage;
@@ -29,21 +33,34 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 
-public class InterfaceGrapiqueRushHour extends Application {
-	@Override
+public class InterfaceGrapiqueRushHour extends Application implements Runnable{
+	
+	
+	BorderPane root ;
+	Scene scene;
+	/*************************CREATION DES PANNEAUX ET DES ELEMENTS QUE JE VAIS UTILISER********************************/
+	Pane paneGaucheGrille;
+	VBox vboxDroiteButton;
+	VBox vboxDeplacement;
+	Label lblCompteurTemps;
+	Label lblDeplacements;
+	Text txtNombreDeplacements ;
+	Button btnReinitialiser;
+	Button btnRetourAuMenu;
+	 LocalTime tempsDepart ;
 	public void start(Stage primaryStage) {
 		try {
-			BorderPane root = new BorderPane();
-			Scene scene = new Scene(root,780,600);
+			 root = new BorderPane();
+			 scene = new Scene(root,780,600);
 			/*************************CREATION DES PANNEAUX ET DES ELEMENTS QUE JE VAIS UTILISER********************************/
-			Pane paneGaucheGrille = new Pane();
-			VBox vboxDroiteButton = new VBox(50);
-			VBox vboxDeplacement = new VBox(5);
-			Label lblCompteurTemps = new Label("00:00");
-			Label lblDeplacements = new Label("0");
-			Text txtNombreDeplacements = new Text("Nombre de déplacements");
-			Button btnReinitialiser = new Button("Réinitialiser");
-			Button btnRetourAuMenu = new Button("Retour au menu");
+			 paneGaucheGrille = new Pane();
+			 vboxDroiteButton = new VBox(50);
+			 vboxDeplacement = new VBox(5);
+			 lblCompteurTemps = new Label();
+			 lblDeplacements = new Label("0");
+			 txtNombreDeplacements = new Text("Nombre de déplacements");
+			 btnReinitialiser = new Button("Réinitialiser");
+			 btnRetourAuMenu = new Button("Retour au menu");
 			
 			Border border = new Border(new BorderStroke(Color.GRAY, BorderStrokeStyle.SOLID, new CornerRadii(5),
 					new BorderWidths(5), new Insets(0))); 
@@ -73,6 +90,11 @@ public class InterfaceGrapiqueRushHour extends Application {
 			lblCompteurTemps.setBorder(borderCompteurtemps);
 			lblCompteurTemps.setAlignment(Pos.CENTER);
 			
+			//pour demarer le temps
+			
+			  tempsDepart = LocalTime.now();
+			 new Thread(this).start();
+			
 			//les deplacements
 			lblDeplacements.setFont(fontDeplacement);
 			lblDeplacements.setPrefWidth(95);
@@ -101,6 +123,8 @@ public class InterfaceGrapiqueRushHour extends Application {
 			root.setCenter(paneGaucheGrille);
 			root.setRight(vboxDroiteButton);
 			
+			
+			
 			primaryStage.setScene(scene);
 			//primaryStage.sizeToScene();
 			primaryStage.setTitle("Rush Hour par Gabriel Marrero");
@@ -112,7 +136,45 @@ public class InterfaceGrapiqueRushHour extends Application {
 		}
 	}
 	
+/****************METHOD QUI PERMET DAFFICHER LE TEMPS****************/
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+		
+		 while(true) {
+			 try {
+	
+				LocalTime tempsActuel = LocalTime.now();
+			
+						 
+				 long tempsEnMinutes = ChronoUnit.MINUTES.between(tempsDepart, tempsActuel);
+				 long tempsEnSecondes = ChronoUnit.SECONDS.between(tempsDepart, tempsActuel);
+		
+				 LocalTime tempsInterfsce = LocalTime.ofSecondOfDay(tempsEnSecondes);
+				// System.out.println("minutes :"+tempsInterfsce.getMinute()+" secondes "+tempsInterfsce.getSecond());
+				 
+				 
+				/*int intHeure = tempsActuel.getHour();
+				int intMinute = tempsActuel.getMinute();
+				int intSeconde = tempsActuel.getSecond();*/
+				 //temps.plusSeconds(1);
+				Thread.sleep(1000);
+				
+				Platform.runLater(()->{lblCompteurTemps.setText(String.format("%02d:%02d", tempsInterfsce.getMinute(),tempsInterfsce.getSecond()));});
+				
+				
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block	
+				e.printStackTrace();
+			}
+			 
+		 }
+		
+	}
+	
 	public static void main(String[] args) {
 		launch(args);
 	}
+
 }
