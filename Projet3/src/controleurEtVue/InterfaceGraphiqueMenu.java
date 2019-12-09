@@ -2,10 +2,15 @@ package controleurEtVue;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Tooltip;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.Glow;
+import javafx.scene.effect.Shadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -24,6 +29,16 @@ public class InterfaceGraphiqueMenu extends Application {
 	BorderPane root;
 	Scene scene;
 
+	ImageView imageFacile;
+	
+	//MOYEN
+	
+	ImageView imageMoyen;
+	
+	
+	//DIFFICILE
+	ImageView imageDifficile;
+	
 	@Override
 	public void start(Stage primaryStage) {
 		// TODO Auto-generated method stub
@@ -48,19 +63,19 @@ public class InterfaceGraphiqueMenu extends Application {
 			
 			
 			//FACILE
-			ImageView imageFacile = new ImageView();
+			 imageFacile = new ImageView();
 			Image image2 = new Image("mini_facile.png");
 			imageFacile.setImage(image2);
 			
 			//MOYEN
 			
-			ImageView imageMoyen = new ImageView();
+			 imageMoyen = new ImageView();
 			Image image3 = new Image("mini_moyen.png");
 			imageMoyen.setImage(image3);
 			
 			
 			//DIFFICILE
-			ImageView imageDifficile = new ImageView();
+			 imageDifficile = new ImageView();
 			Image image4 = new Image("mini_diff.png");
 			imageDifficile.setImage(image4);
 			
@@ -81,9 +96,123 @@ public class InterfaceGraphiqueMenu extends Application {
 			root.setCenter(hboxNiveau);
 			
 			//************GESTIONNAIRE EVENEMENTS***********//
-			
-			
+			 Glow glow = new Glow(); 
+		      glow.setLevel(0.5); 
+		      
+		      
+		    //FACILE
+			imageFacile.setOnMouseEntered(new EventHandler<Event>() {
 
+				@Override
+				public void handle(Event e) {
+					// TODO Auto-generated method stub
+					
+				      
+				     
+					if(e.getSource()==imageFacile) {
+						imageFacile.setEffect(glow);
+						Tooltip.install(imageFacile, new Tooltip("NIVEAU FACILE"));
+					}
+				}
+			});
+			imageFacile.setOnMouseExited(new EventHandler<Event>() {
+
+				@Override
+				public void handle(Event e) {
+					// TODO Auto-generated method stub
+					if(e.getSource()==imageFacile) {
+						imageFacile.setEffect(null);
+					}
+				}
+			});
+			
+			imageFacile.setOnMouseClicked(new EventHandler<Event>() {
+
+				@Override
+				public void handle(Event e) {
+					// TODO Auto-generated method stub
+					if(e.getSource()==imageFacile) {
+						System.out.println("alloFacile");
+					}
+					
+				}
+			});
+			//MOYEN
+			imageMoyen.setOnMouseEntered(new EventHandler<Event>() {
+
+				@Override
+				public void handle(Event e) {
+					// TODO Auto-generated method stub
+					
+				      
+				     
+					if(e.getSource()==imageMoyen) {
+						imageMoyen.setEffect(glow);
+						Tooltip.install(imageMoyen, new Tooltip("NIVEAU MOYEN"));
+						
+					}
+				}
+			});
+			imageMoyen.setOnMouseExited(new EventHandler<Event>() {
+
+				@Override
+				public void handle(Event e) {
+					// TODO Auto-generated method stub
+					if(e.getSource()==imageMoyen) {
+						imageMoyen.setEffect(null);
+					}
+				}
+			});
+			
+			imageMoyen.setOnMouseClicked(new EventHandler<Event>() {
+
+				@Override
+				public void handle(Event e) {
+					// TODO Auto-generated method stub
+					if(e.getSource()==imageMoyen) {
+						System.out.println("alloMoyen");
+					}
+					
+				}
+			});
+			//DIFFICILE
+			imageDifficile.setOnMouseEntered(new EventHandler<Event>() {
+
+				@Override
+				public void handle(Event e) {
+					// TODO Auto-generated method stub
+					
+				      
+				     
+					if(e.getSource()==imageDifficile) {
+						imageDifficile.setEffect(glow);
+						Tooltip.install(imageDifficile, new Tooltip("NIVEAU DIFFICILE"));
+					}
+				}
+			});
+			imageDifficile.setOnMouseExited(new EventHandler<Event>() {
+
+				@Override
+				public void handle(Event e) {
+					// TODO Auto-generated method stub
+					if(e.getSource()==imageDifficile) {
+						imageDifficile.setEffect(null);
+					}
+				}
+			});
+			
+			imageDifficile.setOnMouseClicked(new EventHandler<Event>() {
+
+				@Override
+				public void handle(Event e) {
+					// TODO Auto-generated method stub
+					if(e.getSource()==imageDifficile) {
+						System.out.println("alloDifficile");
+					}
+					
+				}
+			});
+			
 			
 			primaryStage.setScene(scene);
 			// primaryStage.sizeToScene();
@@ -103,7 +232,6 @@ public class InterfaceGraphiqueMenu extends Application {
 		@Override
 		public void handle(ActionEvent e) {
 			// TODO Auto-generated method stub
-			
 			
 		}
 		
