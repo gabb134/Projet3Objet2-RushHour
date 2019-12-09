@@ -159,11 +159,11 @@ public class InterfaceGrapiqueRushHour extends Application implements Runnable{
 				int intMinute = tempsActuel.getMinute();
 				int intSeconde = tempsActuel.getSecond();*/
 				 //temps.plusSeconds(1);
-				Thread.sleep(1000);
+			
 				
 				Platform.runLater(()->{lblCompteurTemps.setText(String.format("%02d:%02d", tempsInterfsce.getMinute(),tempsInterfsce.getSecond()));});
 				
-				
+				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block	
 				e.printStackTrace();
