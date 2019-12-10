@@ -5,8 +5,11 @@ import java.time.temporal.ChronoUnit;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -116,12 +119,30 @@ public class InterfaceGrapiqueRushHour extends Application implements Runnable{
 			
 			btnReinitialiser.setBorder(border);
 			btnRetourAuMenu.setBorder(border);
+			btnRetourAuMenu.setOnAction(new EventHandler<ActionEvent>() {
+				
+				@Override
+				public void handle(ActionEvent e) {
+					// TODO Auto-generated method stub
+					primaryStage.close();
+					
+					
+					
+					Stage stageMenu = new Stage();
+					stageMenu.initModality(Modality.APPLICATION_MODAL);
+					InterfaceGraphiqueMenu menu = new InterfaceGraphiqueMenu();
+					menu.start(stageMenu);
+					
+				}
+			});
 			
 			vboxDroiteButton.getChildren().addAll(lblCompteurTemps,vboxDeplacement,btnReinitialiser,btnRetourAuMenu);
 			vboxDroiteButton.setAlignment(Pos.CENTER);
 			vboxDroiteButton.setPadding(new Insets(15));
 			root.setCenter(paneGaucheGrille);
 			root.setRight(vboxDroiteButton);
+			
+			/********************** AJOUT DES IMAGES(VOITURES) DANS LE PANE(BLOCK A GAUCHE) ******************************/
 			
 			
 			
