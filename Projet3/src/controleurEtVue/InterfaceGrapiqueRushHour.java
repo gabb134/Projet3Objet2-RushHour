@@ -2,6 +2,7 @@ package controleurEtVue;
 
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -11,6 +12,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import modele.LectureDesDonnees;
+import modele.Voiture;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -52,6 +55,10 @@ public class InterfaceGrapiqueRushHour extends Application implements Runnable {
 	Button btnRetourAuMenu;
 	LocalTime tempsDepart;
 	String strNiveau;
+	
+	private ArrayList<Voiture> arrVoituresFaciles = new ArrayList<Voiture>();
+	private ArrayList<Voiture> arrVoituresMoyennes = new ArrayList<Voiture>();
+	private ArrayList<Voiture> arrVoituresDifficiles = new ArrayList<Voiture>();
 
 	public InterfaceGrapiqueRushHour(String strNiveau) {
 		super();
@@ -209,6 +216,15 @@ public class InterfaceGrapiqueRushHour extends Application implements Runnable {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	public void voitureDansGrilleFacile(LectureDesDonnees l) {
+		arrVoituresFaciles = l.getArrVoituresFaciles();
+		
+		for(int i =0; i < arrVoituresFaciles.size();i++) {
+			
+			
+		}
+		
 	}
 
 	/**************** METHOD QUI PERMET DAFFICHER LE TEMPS ****************/

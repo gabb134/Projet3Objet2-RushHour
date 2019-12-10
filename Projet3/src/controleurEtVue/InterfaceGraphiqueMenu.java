@@ -274,6 +274,7 @@ public class InterfaceGraphiqueMenu extends Application {
 		arrVoituresFaciles = l.getArrVoituresFaciles();
 		
 		for(int i =0; i < arrVoituresFaciles.size();i++) {
+			pa
 			
 		}
 		
