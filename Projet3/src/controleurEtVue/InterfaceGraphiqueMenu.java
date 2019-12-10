@@ -42,6 +42,7 @@ public class InterfaceGraphiqueMenu extends Application {
 
 	// DIFFICILE
 	ImageView imageDifficile;
+	String strNiveau;
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -143,13 +144,15 @@ public class InterfaceGraphiqueMenu extends Application {
 				public void handle(Event e) {
 					// TODO Auto-generated method stub
 					if (e.getSource() == imageFacile) {
-						System.out.println("alloFacile");
+						
+						
+						 strNiveau = "facile";
 
 						primaryStage.close();
 
 						Stage stageRushHour = new Stage();
 						stageRushHour.initModality(Modality.APPLICATION_MODAL);
-						InterfaceGrapiqueRushHour rushHour = new InterfaceGrapiqueRushHour();
+						InterfaceGrapiqueRushHour rushHour = new InterfaceGrapiqueRushHour(strNiveau);
 						rushHour.start(stageRushHour);
 						// voir comment lui envoyes des variables avec le consttructeur pour faoire la
 						// differences avec les niveaux
@@ -188,12 +191,14 @@ public class InterfaceGraphiqueMenu extends Application {
 				public void handle(Event e) {
 					// TODO Auto-generated method stub
 					if (e.getSource() == imageMoyen) {
-						System.out.println("alloMoyen");
+						
+						strNiveau = "moyen";
+
 						primaryStage.close();
 
 						Stage stageRushHour = new Stage();
 						stageRushHour.initModality(Modality.APPLICATION_MODAL);
-						InterfaceGrapiqueRushHour rushHour = new InterfaceGrapiqueRushHour();
+						InterfaceGrapiqueRushHour rushHour = new InterfaceGrapiqueRushHour(strNiveau);
 						rushHour.start(stageRushHour);
 					}
 
@@ -229,12 +234,14 @@ public class InterfaceGraphiqueMenu extends Application {
 				public void handle(Event e) {
 					// TODO Auto-generated method stub
 					if (e.getSource() == imageDifficile) {
-						System.out.println("alloDifficile");
+						
+						strNiveau = "difficile";
+
 						primaryStage.close();
 
 						Stage stageRushHour = new Stage();
 						stageRushHour.initModality(Modality.APPLICATION_MODAL);
-						InterfaceGrapiqueRushHour rushHour = new InterfaceGrapiqueRushHour();
+						InterfaceGrapiqueRushHour rushHour = new InterfaceGrapiqueRushHour(strNiveau);
 						rushHour.start(stageRushHour);
 					}
 
