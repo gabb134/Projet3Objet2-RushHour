@@ -1,11 +1,15 @@
 package modele;
 
-public class Voiture {
+import javafx.scene.control.Tab;
+import javafx.scene.layout.HBox;
+
+public class Voiture extends HBox {
 	private String couleur;
 	private int longueur;
 	private int colonne;
 	private int ligne;
 	private EnumDirectionVoitures direction;
+	private int[][] tabVoiture = new int[6][6];
 	
 
 

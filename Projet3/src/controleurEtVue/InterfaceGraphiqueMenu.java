@@ -1,5 +1,7 @@
 package controleurEtVue;
 
+import java.util.ArrayList;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -29,6 +31,8 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import modele.LectureDesDonnees;
+import modele.Voiture;
 
 public class InterfaceGraphiqueMenu extends Application {
 	BorderPane root;
@@ -43,6 +47,10 @@ public class InterfaceGraphiqueMenu extends Application {
 	// DIFFICILE
 	ImageView imageDifficile;
 	String strNiveau;
+	
+	private ArrayList<Voiture> arrVoituresFaciles = new ArrayList<Voiture>();
+	private ArrayList<Voiture> arrVoituresMoyennes = new ArrayList<Voiture>();
+	private ArrayList<Voiture> arrVoituresDifficiles = new ArrayList<Voiture>();
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -123,7 +131,9 @@ public class InterfaceGraphiqueMenu extends Application {
 
 					if (e.getSource() == imageFacile) {
 						imageFacile.setEffect(glow);
-						Tooltip.install(imageFacile, new Tooltip("NIVEAU FACILE"));
+						//Tooltip.install(imageFacile, new Tooltip("NIVEAU FACILE"));
+						
+					
 					}
 				}
 			});
@@ -169,7 +179,7 @@ public class InterfaceGraphiqueMenu extends Application {
 
 					if (e.getSource() == imageMoyen) {
 						imageMoyen.setEffect(glow);
-						Tooltip.install(imageMoyen, new Tooltip("NIVEAU MOYEN"));
+						//Tooltip.install(imageMoyen, new Tooltip("NIVEAU MOYEN"));
 
 					}
 				}
@@ -213,7 +223,7 @@ public class InterfaceGraphiqueMenu extends Application {
 
 					if (e.getSource() == imageDifficile) {
 						imageDifficile.setEffect(glow);
-						Tooltip.install(imageDifficile, new Tooltip("NIVEAU DIFFICILE"));
+						//Tooltip.install(imageDifficile, new Tooltip("NIVEAU DIFFICILE"));
 					}
 				}
 			});
@@ -260,15 +270,13 @@ public class InterfaceGraphiqueMenu extends Application {
 		}
 
 	}
-
-	private class GestionImages implements EventHandler<ActionEvent> {
-
-		@Override
-		public void handle(ActionEvent e) {
-			// TODO Auto-generated method stub
-
+	public void voitureDansGrilleFacile(LectureDesDonnees l) {
+		arrVoituresFaciles = l.getArrVoituresFaciles();
+		
+		for(int i =0; i < arrVoituresFaciles.size();i++) {
+			
 		}
-
+		
 	}
 
 	public static void main(String[] args) {
