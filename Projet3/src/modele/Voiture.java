@@ -1,6 +1,7 @@
 package modele;
 
 import javafx.scene.control.Tab;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
 public class Voiture extends HBox {
@@ -20,6 +21,13 @@ public class Voiture extends HBox {
 		this.colonne = colonne;
 		this.ligne = ligne;
 		this.direction = direction;
+	}
+	public ImageView voitureChoisi() {
+		
+		
+		
+		
+		return null;
 	}
 
 	@Override

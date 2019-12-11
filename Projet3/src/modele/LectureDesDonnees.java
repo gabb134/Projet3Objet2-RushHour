@@ -38,7 +38,9 @@ public class LectureDesDonnees {
 	private ArrayList<Voiture> arrVoituresMoyennes = new ArrayList<Voiture>();
 	private ArrayList<Voiture> arrVoituresDifficiles = new ArrayList<Voiture>();
 
-	private LectureDesDonnees(String fichierfacile,String fichierMoyen,String fichierDifficile) {
+	Voiture voitureFacile;
+	
+	public LectureDesDonnees(String fichierfacile,String fichierMoyen,String fichierDifficile) {
 		
 		//POUR LE FICHIER FACILE
 		BufferedReader brFichierFacile = null;
@@ -80,7 +82,7 @@ public class LectureDesDonnees {
 					
 					}
 					
-					Voiture voitureFacile = new Voiture(couleurFacile, longueurFacile, colonneFacile, ligneFacile, directionFacile);
+					 voitureFacile = new Voiture(couleurFacile, longueurFacile, colonneFacile, ligneFacile, directionFacile);
 					arrVoituresFaciles.add(voitureFacile);
 					
 					//System.out.println(directionFacile.getStrOrientation());
@@ -205,6 +207,12 @@ public class LectureDesDonnees {
 			 
 			 
 				
+	}
+	public Voiture getVoitureFacile() {
+		return voitureFacile;
+	}
+	public void setVoitureFacile(Voiture voitureFacile) {
+		this.voitureFacile = voitureFacile;
 	}
 	public void affichage() {
 		

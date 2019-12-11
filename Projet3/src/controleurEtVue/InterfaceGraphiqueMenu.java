@@ -47,10 +47,6 @@ public class InterfaceGraphiqueMenu extends Application {
 	// DIFFICILE
 	ImageView imageDifficile;
 	String strNiveau;
-	
-	private ArrayList<Voiture> arrVoituresFaciles = new ArrayList<Voiture>();
-	private ArrayList<Voiture> arrVoituresMoyennes = new ArrayList<Voiture>();
-	private ArrayList<Voiture> arrVoituresDifficiles = new ArrayList<Voiture>();
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -270,15 +266,7 @@ public class InterfaceGraphiqueMenu extends Application {
 		}
 
 	}
-	public void voitureDansGrilleFacile(LectureDesDonnees l) {
-		arrVoituresFaciles = l.getArrVoituresFaciles();
-		
-		for(int i =0; i < arrVoituresFaciles.size();i++) {
-			pa
-			
-		}
-		
-	}
+	
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
