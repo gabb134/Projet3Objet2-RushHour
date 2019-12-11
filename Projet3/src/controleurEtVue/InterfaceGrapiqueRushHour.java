@@ -178,7 +178,68 @@ public class InterfaceGrapiqueRushHour extends Application implements Runnable {
 			 * AJOUT DES IMAGES(VOITURES) DANS LE PANE(BLOCK A GAUCHE) EN FONCTION DU NIVEAU
 			 * RECUPERE DE LINTERFACE MENU
 			 ******************************/
+			// Voitures horizontales
+			ImageView voitureRougeH = new ImageView();
+			Image image1 = new Image("auto_H_rouge.gif");
+			voitureRougeH.setImage(image1);
 
+			ImageView voitureVerteH = new ImageView();
+			Image image2 = new Image("auto_H_vert.gif");
+			voitureVerteH.setImage(image2);
+
+			ImageView voitureBleuPaleH = new ImageView();
+			Image image3 = new Image("auto_H_bleu.gif");
+			voitureBleuPaleH.setImage(image3);
+			
+			ImageView camionTurquoiseH = new ImageView();
+			Image image8 = new Image("camion_H_vert.gif");
+			camionTurquoiseH.setImage(image8);
+			
+			ImageView camionBleuH = new ImageView();
+			Image image11 = new Image("camion_H_bleu.gif");
+			camionBleuH.setImage(image11);
+
+			// Voitures verticales
+			ImageView camionMauveV = new ImageView();
+			Image image4 = new Image("camion_V_mauve.gif");
+			camionMauveV.setImage(image4);
+
+			ImageView voitureOrangeV = new ImageView();
+			Image image5 = new Image("auto_V_orange.gif");
+			voitureOrangeV.setImage(image5);
+
+			ImageView camionBleuV = new ImageView();
+			Image image6 = new Image("camion_V_bleu.gif");
+			camionBleuV.setImage(image6);
+
+			ImageView camionJauneV = new ImageView();
+			Image image7 = new Image("camion_V_jaune.gif");
+			camionJauneV.setImage(image7);
+			
+			ImageView voitureMauveV = new ImageView();
+			Image image10 = new Image("auto_V_mauve.gif");
+			voitureMauveV.setImage(image10);
+			
+			gpane.setGridLinesVisible(true);
+			gpane.setPadding(new Insets(70, 0, 0, 45));
+			for (int i = 0; i < 6; i++) {
+				ColumnConstraints col1 = new ColumnConstraints(72);
+
+				// col1.setPrefWidth(45);
+				
+				gpane.getColumnConstraints().add(col1);
+
+			}
+
+			for (int i = 0; i < 6; i++) {
+
+				RowConstraints row1 = new RowConstraints(70);
+				
+				gpane.getRowConstraints().add(row1);
+
+			}
+			
+			
 			switch (strNiveau) {
 			case "facile":
 
@@ -191,59 +252,9 @@ public class InterfaceGrapiqueRushHour extends Application implements Runnable {
 				
 				//POUR LE GRIDPANE(GRILLE DE JEU)
 
-				gpane.setGridLinesVisible(true);
-				gpane.setPadding(new Insets(70, 0, 0, 45));
-				for (int i = 0; i < 6; i++) {
-					ColumnConstraints col1 = new ColumnConstraints(72);
+		
 
-					// col1.setPrefWidth(45);
-					gpane.getColumnConstraints().add(col1);
-
-				}
-
-				for (int i = 0; i < 6; i++) {
-
-					RowConstraints row1 = new RowConstraints(72);
-
-					gpane.getRowConstraints().add(row1);
-
-				}
-				
-
-				// Voitures horizontales
-				ImageView voitureRougeH = new ImageView();
-				Image image1 = new Image("auto_H_rouge.gif");
-				voitureRougeH.setImage(image1);
-
-				ImageView voitureVerteH = new ImageView();
-				Image image2 = new Image("auto_H_vert.gif");
-				voitureVerteH.setImage(image2);
-
-				ImageView voitureBleuPaleH = new ImageView();
-				Image image3 = new Image("auto_H_bleu.gif");
-				voitureBleuPaleH.setImage(image3);
-				
-				ImageView camionTurquoiseH = new ImageView();
-				Image image8 = new Image("camion_H_vert.gif");
-				voitureBleuPaleH.setImage(image8);
-
-				// Voitures verticales
-				ImageView camionMauveV = new ImageView();
-				Image image4 = new Image("camion_V_mauve.gif");
-				camionMauveV.setImage(image4);
-
-				ImageView voitureOrangeV = new ImageView();
-				Image image5 = new Image("auto_V_orange.gif");
-				voitureOrangeV.setImage(image5);
-
-				ImageView camionBleuV = new ImageView();
-				Image image6 = new Image("camion_V_bleu.gif");
-				camionBleuV.setImage(image6);
-
-				ImageView camionJauneV = new ImageView();
-				Image image7 = new Image("camion_V_jaune.gif");
-				camionJauneV.setImage(image7);
-				
+			
 				
 				
 				//ajout des voitures dans la grille de jeu
@@ -252,11 +263,12 @@ public class InterfaceGrapiqueRushHour extends Application implements Runnable {
 				gpane.add(voitureVerteH, 0, 0);
 				gpane.add(voitureBleuPaleH, 4, 4);
 				gpane.add(camionTurquoiseH, 2, 5);
+				
 				//verticales
 				gpane.add(camionMauveV, 0, 2);
-				gpane.add(voitureOrangeV, 0,(int)4.8);
-				gpane.add(camionBleuV, 3, 1);
-				gpane.add(camionJauneV, 5, 0);
+				gpane.add(voitureOrangeV, 0,5);
+				gpane.add(camionBleuV, 3, 2);
+				gpane.add(camionJauneV, 5, 1);
 				
 				
 
@@ -287,13 +299,28 @@ public class InterfaceGrapiqueRushHour extends Application implements Runnable {
 
 				break;
 			case "moyen":
-				// insertion des voitures dans le pane
+		
 				System.out.println("alloMoyen");
 
 				// pour demarer le temps
 
 				tempsDepart = LocalTime.now();
 				new Thread(this).start();
+				
+				// insertion des voitures dans le pane
+				
+				//ajout des voitures dans la grille de jeu
+				//horinzontales
+				
+				gpane.add(voitureVerteH, 1, 0);
+				gpane.add(camionBleuH, 3, 3);
+				gpane.add(voitureRougeH, 1, 2);
+				gpane.add(camionTurquoiseH, 2, 5);
+				//verticales
+				gpane.add(camionJauneV, 0, 1);
+				gpane.add(voitureOrangeV, 2, 4);
+				gpane.add(camionMauveV, 3, 1);
+				gpane.add(voitureMauveV, 5, 4);
 
 				break;
 			case "difficile":
