@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -45,21 +46,21 @@ import modele.LectureDesDonnees;
 
 public class InterfaceGrapiqueRushHour extends Application implements Runnable {
 
-	BorderPane root;
-	Scene scene;
+	private BorderPane root;
+	private Scene scene;
 	/*************************
 	 * CREATION DES PANNEAUX ET DES ELEMENTS QUE JE VAIS UTILISER
 	 ********************************/
-	Pane paneGaucheGrille;
-	VBox vboxDroiteButton;
-	VBox vboxDeplacement;
-	Label lblCompteurTemps;
-	Label lblDeplacements;
-	Text txtNombreDeplacements;
-	Button btnReinitialiser;
-	Button btnRetourAuMenu;
-	LocalTime tempsDepart;
-	String strNiveau;
+	private Pane paneGaucheGrille;
+	private VBox vboxDroiteButton;
+	private VBox vboxDeplacement;
+	private Label lblCompteurTemps;
+	private Label lblDeplacements;
+	private Text txtNombreDeplacements;
+	private Button btnReinitialiser;
+	private Button btnRetourAuMenu;
+	private LocalTime tempsDepart;
+	private String strNiveau;
 
 	private ArrayList<Voiture> arrVoituresFaciles = new ArrayList<Voiture>();
 	private ArrayList<Voiture> arrVoituresMoyennes = new ArrayList<Voiture>();
@@ -252,8 +253,12 @@ public class InterfaceGrapiqueRushHour extends Application implements Runnable {
 			Image image20 = new Image("camion_V_vert.gif");
 			camionTurquoiseV.setImage(image20);
 			
+			ImageView voitureVerteV2 = new ImageView();
+			Image image21 = new Image("auto_V_vert.gif");
+			voitureVerteV2.setImage(image21);
 			
-			gpane.setGridLinesVisible(true);
+			
+			//gpane.setGridLinesVisible(true);
 			gpane.setPadding(new Insets(70, 0, 0, 45));
 			for (int i = 0; i < 6; i++) {
 				ColumnConstraints col1 = new ColumnConstraints(72);
@@ -380,7 +385,7 @@ public class InterfaceGrapiqueRushHour extends Application implements Runnable {
 				//verticales
 				gpane.add(voitureVerteV, 0, 0,1,2);
 				gpane.add(voitureRoseV, 2, 2,1,2);
-				gpane.add(voitureVerteV, 2, 4);
+				gpane.add(voitureVerteV2, 2, 4,1,2);
 				gpane.add(voitureBleuPaleV, 3, 1,1,2);
 				gpane.add(camionTurquoiseV, 5, 3);
 				
@@ -390,6 +395,18 @@ public class InterfaceGrapiqueRushHour extends Application implements Runnable {
 			default:
 				break;
 			}
+			
+			gpane.setOnDragOver(new EventHandler<Event>() {
+
+				@Override
+				public void handle(Event e) {
+					// TODO Auto-generated method stub
+					if(e.getSource()==voitureNoirH) {
+						System.out.println("noir");
+					}
+					
+				}
+			});
 
 			primaryStage.setScene(scene);
 			// primaryStage.sizeToScene();

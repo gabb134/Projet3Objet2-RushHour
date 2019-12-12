@@ -35,18 +35,18 @@ import modele.LectureDesDonnees;
 import modele.Voiture;
 
 public class InterfaceGraphiqueMenu extends Application {
-	BorderPane root;
-	Scene scene;
+	private BorderPane root;
+	private Scene scene;
 
-	ImageView imageFacile;
+	private ImageView imageFacile;
 
 	// MOYEN
 
-	ImageView imageMoyen;
+	private ImageView imageMoyen;
 
 	// DIFFICILE
-	ImageView imageDifficile;
-	String strNiveau;
+	private ImageView imageDifficile;
+	private String strNiveau;
 
 	@Override
 	public void start(Stage primaryStage) {
