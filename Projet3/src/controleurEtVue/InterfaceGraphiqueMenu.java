@@ -46,7 +46,7 @@ public class InterfaceGraphiqueMenu extends Application {
 
 	// DIFFICILE
 	private ImageView imageDifficile;
-	private String strNiveau;
+	private int intNiveau;
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -152,13 +152,13 @@ public class InterfaceGraphiqueMenu extends Application {
 					if (e.getSource() == imageFacile) {
 						
 						
-						 strNiveau = "facile";
+						intNiveau = 1;
 
 						primaryStage.close();
 
 						Stage stageRushHour = new Stage();
 						stageRushHour.initModality(Modality.APPLICATION_MODAL);
-						InterfaceGrapiqueRushHour rushHour = new InterfaceGrapiqueRushHour(strNiveau);
+						InterfaceGrapiqueRushHour rushHour = new InterfaceGrapiqueRushHour(intNiveau);
 						rushHour.start(stageRushHour);
 						// voir comment lui envoyes des variables avec le consttructeur pour faoire la
 						// differences avec les niveaux
@@ -198,13 +198,13 @@ public class InterfaceGraphiqueMenu extends Application {
 					// TODO Auto-generated method stub
 					if (e.getSource() == imageMoyen) {
 						
-						strNiveau = "moyen";
+						intNiveau = 2;
 
 						primaryStage.close();
 
 						Stage stageRushHour = new Stage();
 						stageRushHour.initModality(Modality.APPLICATION_MODAL);
-						InterfaceGrapiqueRushHour rushHour = new InterfaceGrapiqueRushHour(strNiveau);
+						InterfaceGrapiqueRushHour rushHour = new InterfaceGrapiqueRushHour(intNiveau);
 						rushHour.start(stageRushHour);
 					}
 
@@ -241,13 +241,13 @@ public class InterfaceGraphiqueMenu extends Application {
 					// TODO Auto-generated method stub
 					if (e.getSource() == imageDifficile) {
 						
-						strNiveau = "difficile";
+						intNiveau = 3;
 
 						primaryStage.close();
 
 						Stage stageRushHour = new Stage();
 						stageRushHour.initModality(Modality.APPLICATION_MODAL);
-						InterfaceGrapiqueRushHour rushHour = new InterfaceGrapiqueRushHour(strNiveau);
+						InterfaceGrapiqueRushHour rushHour = new InterfaceGrapiqueRushHour(intNiveau);
 						rushHour.start(stageRushHour);
 					}
 

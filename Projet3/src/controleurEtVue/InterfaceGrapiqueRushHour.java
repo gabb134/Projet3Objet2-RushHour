@@ -14,6 +14,7 @@ import javafx.geometry.Pos;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import modele.LectureDesDonnees;
+import modele.LectureDonnees2;
 import modele.Voiture;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -60,15 +61,14 @@ public class InterfaceGrapiqueRushHour extends Application implements Runnable {
 	private Button btnReinitialiser;
 	private Button btnRetourAuMenu;
 	private LocalTime tempsDepart;
-	private String strNiveau;
+	private int intNiveau;
 
-	private ArrayList<Voiture> arrVoituresFaciles = new ArrayList<Voiture>();
-	private ArrayList<Voiture> arrVoituresMoyennes = new ArrayList<Voiture>();
-	private ArrayList<Voiture> arrVoituresDifficiles = new ArrayList<Voiture>();
+	private ArrayList<Voiture> lstvVoitures ;
 
-	public InterfaceGrapiqueRushHour(String strNiveau) {
+
+	public InterfaceGrapiqueRushHour(int intNiveau) {
 		super();
-		this.strNiveau = strNiveau;
+		this.intNiveau = intNiveau;
 
 	}
 
@@ -76,11 +76,11 @@ public class InterfaceGrapiqueRushHour extends Application implements Runnable {
 		try {
 			root = new BorderPane();
 			scene = new Scene(root, 780, 600);
-			GridPane gpane = new GridPane();
+			//GridPane gpane = new GridPane();
 			/*************************
 			 * CREATION DES PANNEAUX ET DES ELEMENTS QUE JE VAIS UTILISER
 			 ********************************/
-			LectureDesDonnees l = new LectureDesDonnees("f1.txt", "f2.txt", "f3.txt");
+			
 			paneGaucheGrille = new Pane();
 			vboxDroiteButton = new VBox(50);
 			vboxDeplacement = new VBox(5);
@@ -99,9 +99,20 @@ public class InterfaceGrapiqueRushHour extends Application implements Runnable {
 			Border borderCompteurtemps = new Border(new BorderStroke(Color.GRAY, BorderStrokeStyle.SOLID,
 					new CornerRadii(10), new BorderWidths(5), new Insets(0)));
 
-			BackgroundImage imageGrilleJeu = new BackgroundImage(new Image("grille.gif", 530, 580, false, true),
+		/*	BackgroundImage imageGrilleJeu = new BackgroundImage(new Image("grille.gif", 530, 580, false, true),
 					BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
-					BackgroundSize.DEFAULT);
+					BackgroundSize.DEFAULT);*/
+			
+			Image imgGrille = new Image("grille.gif");
+			
+			BackgroundSize grilleTaille = new BackgroundSize(100,80,true,true,true,false);
+			BackgroundImage fondGrille = new BackgroundImage(imgGrille, BackgroundRepeat.SPACE,BackgroundRepeat.SPACE,BackgroundPosition.DEFAULT,grilleTaille);
+			Background fondGrid = new Background(fondGrille);
+			
+			
+			
+			
+			
 			Font font1 = Font.font("Arial", FontWeight.BOLD, FontPosture.REGULAR, 23);
 			Font fontDeplacement = Font.font("Arial", FontWeight.BOLD, FontPosture.REGULAR, 50);
 			Font fontCompteurTemps = Font.font("Arial", FontWeight.BOLD, FontPosture.REGULAR, 45);
@@ -111,8 +122,10 @@ public class InterfaceGrapiqueRushHour extends Application implements Runnable {
 			 ********************************/
 
 			// le temps
+			tempsDepart = LocalTime.now();
+			new Thread(this).start();
 			// paneGaucheGrille.setBackground(new Background(imageGrilleJeu));
-			gpane.setBackground(new Background(imageGrilleJeu));
+			paneGaucheGrille.setBackground(fondGrid);
 
 			lblCompteurTemps.setPrefWidth(150);
 			lblCompteurTemps.setPrefHeight(80);
@@ -171,242 +184,36 @@ public class InterfaceGrapiqueRushHour extends Application implements Runnable {
 			vboxDroiteButton.getChildren().addAll(lblCompteurTemps, vboxDeplacement, btnReinitialiser, btnRetourAuMenu);
 			vboxDroiteButton.setAlignment(Pos.CENTER);
 			vboxDroiteButton.setPadding(new Insets(15));
-			// root.setCenter(paneGaucheGrille);
-			root.setCenter(gpane);
+			 root.setCenter(paneGaucheGrille);
+			//root.setCenter(gpane);
 			root.setRight(vboxDroiteButton);
 
 			/**********************
 			 * AJOUT DES IMAGES(VOITURES) DANS LE PANE(BLOCK A GAUCHE) EN FONCTION DU NIVEAU
 			 * RECUPERE DE LINTERFACE MENU
 			 ******************************/
-			// Voitures horizontales
-			ImageView voitureRougeH = new ImageView();
-			Image image1 = new Image("auto_H_rouge.gif");
-			voitureRougeH.setImage(image1);
-
-			ImageView voitureVerteH = new ImageView();
-			Image image2 = new Image("auto_H_vert.gif");
-			voitureVerteH.setImage(image2);
-
-			ImageView voitureBleuPaleH = new ImageView();
-			Image image3 = new Image("auto_H_bleu.gif");
-			voitureBleuPaleH.setImage(image3);
-			
-			ImageView camionTurquoiseH = new ImageView();
-			Image image8 = new Image("camion_H_vert.gif");
-			camionTurquoiseH.setImage(image8);
-			
-			ImageView camionBleuH = new ImageView();
-			Image image11 = new Image("camion_H_bleu.gif");
-			camionBleuH.setImage(image11);
-			
-			ImageView voitureOrangeH = new ImageView();
-			Image image13 = new Image("auto_H_orange.gif");
-			voitureOrangeH.setImage(image13);
-			
-			ImageView voitureNoirH = new ImageView();
-			Image image15 = new Image("auto_H_noir.gif");
-			voitureNoirH.setImage(image15);
-			
-			ImageView camionJauneH = new ImageView();
-			Image image16 = new Image("camion_H_jaune.gif");
-			camionJauneH.setImage(image16);
-			
-			ImageView voitureMauveH = new ImageView();
-			Image image17 = new Image("auto_H_mauve.gif");
-			voitureMauveH.setImage(image17);
-
-			// Voitures verticales
-			ImageView camionMauveV = new ImageView();
-			Image image4 = new Image("camion_V_mauve.gif");
-			camionMauveV.setImage(image4);
-
-			ImageView voitureOrangeV = new ImageView();
-			Image image5 = new Image("auto_V_orange.gif");
-			voitureOrangeV.setImage(image5);
-
-			ImageView camionBleuV = new ImageView();
-			Image image6 = new Image("camion_V_bleu.gif");
-			camionBleuV.setImage(image6);
-
-			ImageView camionJauneV = new ImageView();
-			Image image7 = new Image("camion_V_jaune.gif");
-			camionJauneV.setImage(image7);
-			
-			ImageView voitureMauveV = new ImageView();
-			Image image10 = new Image("auto_V_mauve.gif");
-			voitureMauveV.setImage(image10);
-			
-			ImageView voitureVerteV = new ImageView();
-			Image image12 = new Image("auto_V_vert.gif");
-			voitureVerteV.setImage(image12);
-			
-			ImageView voitureRoseV = new ImageView();
-			Image image14 = new Image("auto_V_rose.gif");
-			voitureRoseV.setImage(image14);
-			
-			ImageView voitureBleuPaleV = new ImageView();
-			Image image19 = new Image("auto_V_bleu.gif");
-			voitureBleuPaleV.setImage(image19);
-			
-			ImageView camionTurquoiseV = new ImageView();
-			Image image20 = new Image("camion_V_vert.gif");
-			camionTurquoiseV.setImage(image20);
-			
-			ImageView voitureVerteV2 = new ImageView();
-			Image image21 = new Image("auto_V_vert.gif");
-			voitureVerteV2.setImage(image21);
-			
-			
-			//gpane.setGridLinesVisible(true);
-			gpane.setPadding(new Insets(70, 0, 0, 45));
-			for (int i = 0; i < 6; i++) {
-				ColumnConstraints col1 = new ColumnConstraints(72);
-
-				// col1.setPrefWidth(45);
-				
-				gpane.getColumnConstraints().add(col1);
-
-			}
-
-			for (int i = 0; i < 6; i++) {
-
-				RowConstraints row1 = new RowConstraints(70);
-				
-				gpane.getRowConstraints().add(row1);
-
-			}
-			
-			
-			switch (strNiveau) {
-			case "facile":
-
-				System.out.println("alloFacile");
-
-				// pour demarer le temps
-
-				tempsDepart = LocalTime.now();
-				new Thread(this).start();
-				
-				//POUR LE GRIDPANE(GRILLE DE JEU)
-
 		
 
+	
+			LectureDonnees2	lec = new LectureDonnees2(intNiveau);
+				System.out.println("le niveau: "+intNiveau);
 			
-				
-				
-				//ajout des voitures dans la grille de jeu
-				//horinzontales
-				gpane.add(voitureRougeH,1, 2);
-				gpane.add(voitureVerteH, 0, 0);
-				gpane.add(voitureBleuPaleH, 4, 4);
-				gpane.add(camionTurquoiseH, 2, 5);
-				
-				//verticales
-				gpane.add(camionMauveV, 0, 2);
-				gpane.add(voitureOrangeV, 0,4,1,2);
-				gpane.add(camionBleuV, 3, 2);
-				gpane.add(camionJauneV, 5, 1);
-				
-				
-
-				// insertion des voitures dans le pane
-
-				// arrVoituresFaciles = l.getArrVoituresFaciles();
-
-				/*
-				 * for(int i =0; i < arrVoituresFaciles.size();i++) {
-				 * 
-				 * 
-				 * }
-				 */
-
-				// Button btnTest = new Button("Test");
-
-				/*
-				 * for(Voiture v:arrVoituresFaciles) {
-				 * 
-				 * paneGaucheGrille.setLayoutX(1*v.getLongueur()+70);
-				 * paneGaucheGrille.setLayoutY(1*v.getLongueur()+45);
-				 * 
-				 * }
-				 */
-				// paneGaucheGrille.setLayoutX(1*l.getVoitureFacile().getLongueur()+70);
-				// paneGaucheGrille.setLayoutY(1*l.getVoitureFacile().getLongueur()+45);
-				// paneGaucheGrille.getChildren().add(btnTest);
-
-				break;
-			case "moyen":
-		
-				System.out.println("alloMoyen");
-
-				// pour demarer le temps
-
-				tempsDepart = LocalTime.now();
-				new Thread(this).start();
-				
-				// insertion des voitures dans le pane
-				
-				//ajout des voitures dans la grille de jeu
-				//horinzontales
-				
-				gpane.add(voitureVerteH, 1, 0);
-				gpane.add(camionBleuH, 3, 3);
-				gpane.add(voitureRougeH, 1, 2);
-				gpane.add(camionTurquoiseH, 2, 5);
-				//verticales
-				gpane.add(camionJauneV, 0, 1);
-				gpane.add(voitureOrangeV, 2, 3,1,2);
-				gpane.add(camionMauveV, 3, 1);
-				gpane.add(voitureMauveV, 5, 4,1,2);
-
-				break;
-			case "difficile":
+			lstvVoitures = lec.getLstVoitures();
 			
-				System.out.println("alloDifficile");
-
-				// pour demarer le temps
-
-				tempsDepart = LocalTime.now();
-				new Thread(this).start();
-				// insertion des voitures dans le pane
+			
+			for(Voiture voiture:lstvVoitures) {
+				paneGaucheGrille.setLayoutX(voiture.getDblX());
+				paneGaucheGrille.setLayoutY(voiture.getDblY());
+			
+				System.out.println(voiture.toString());
 				
-				//ajout des voitures dans la grille de jeu
-				//horinzontales
-				
-				
-				gpane.add(voitureRougeH,0, 2);
-				gpane.add(voitureOrangeH, 1, 1);
-				gpane.add(camionJauneH, 3, 0);
-				gpane.add(voitureMauveH, 3, 3);
-				gpane.add(voitureNoirH, 3, 4);
-				gpane.add(camionBleuH, 3, 5);
-				
-				//verticales
-				gpane.add(voitureVerteV, 0, 0,1,2);
-				gpane.add(voitureRoseV, 2, 2,1,2);
-				gpane.add(voitureVerteV2, 2, 4,1,2);
-				gpane.add(voitureBleuPaleV, 3, 1,1,2);
-				gpane.add(camionTurquoiseV, 5, 3);
-				
-				
-				break;
-
-			default:
-				break;
+				paneGaucheGrille.getChildren().addAll(voiture);
+				System.out.println("Dans le pane \nx: "+voiture.getDblX()+" y : "+voiture.getDblY()+"\n");
 			}
 			
-			gpane.setOnDragOver(new EventHandler<Event>() {
-
-				@Override
-				public void handle(Event e) {
-					// TODO Auto-generated method stub
-					if(e.getSource()==voitureNoirH) {
-						System.out.println("noir");
-					}
-					
-				}
-			});
+			
+			
+			
 
 			primaryStage.setScene(scene);
 			// primaryStage.sizeToScene();
@@ -417,15 +224,6 @@ public class InterfaceGrapiqueRushHour extends Application implements Runnable {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-
-	public void voitureDansGrilleFacile(LectureDesDonnees l) {
-		arrVoituresFaciles = l.getArrVoituresFaciles();
-
-		for (int i = 0; i < arrVoituresFaciles.size(); i++) {
-
-		}
-
 	}
 
 	/**************** METHOD QUI PERMET DAFFICHER LE TEMPS ****************/

@@ -82,8 +82,8 @@ public class LectureDesDonnees {
 					
 					}
 					
-					 voitureFacile = new Voiture(couleurFacile, longueurFacile, colonneFacile, ligneFacile, directionFacile);
-					arrVoituresFaciles.add(voitureFacile);
+				//	 voitureFacile = new Voiture(couleurFacile, longueurFacile, colonneFacile, ligneFacile, directionFacile);
+					//arrVoituresFaciles.add(voitureFacile);
 					
 					//System.out.println(directionFacile.getStrOrientation());
 					
@@ -136,8 +136,8 @@ public class LectureDesDonnees {
 						
 						}
 						
-						Voiture voitureMoyenne = new Voiture(couleurMoyen, longueurMoyen, colonneMoyen, ligneMoyen, directionMoyen);
-						arrVoituresMoyennes.add(voitureMoyenne);
+					//	Voiture voitureMoyenne = new Voiture(couleurMoyen, longueurMoyen, colonneMoyen, ligneMoyen, directionMoyen);
+					//	arrVoituresMoyennes.add(voitureMoyenne);
 						
 						//System.out.println(directionFacile.getStrOrientation());
 						
@@ -190,8 +190,8 @@ public class LectureDesDonnees {
 							
 							}
 							
-							Voiture voitureDifficile = new Voiture(couleurDifficile, longueurDifficile, colonneDifficile, ligneDifficile, directionDifficile);
-							arrVoituresDifficiles.add(voitureDifficile);
+							//Voiture voitureDifficile = new Voiture(couleurDifficile, longueurDifficile, colonneDifficile, ligneDifficile, directionDifficile);
+							//arrVoituresDifficiles.add(voitureDifficile);
 							
 							//System.out.println(directionFacile.getStrOrientation());
 							
