@@ -13,7 +13,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import modele.LectureDesDonnees;
+
 import modele.LectureDonnees2;
 import modele.Voiture;
 import javafx.scene.Scene;
@@ -43,7 +43,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import modele.LectureDesDonnees;
+
 
 public class InterfaceGrapiqueRushHour extends Application implements Runnable {
 
@@ -52,7 +52,7 @@ public class InterfaceGrapiqueRushHour extends Application implements Runnable {
 	/*************************
 	 * CREATION DES PANNEAUX ET DES ELEMENTS QUE JE VAIS UTILISER
 	 ********************************/
-	private Pane paneGaucheGrille;
+	 Pane paneGaucheGrille;
 	private VBox vboxDroiteButton;
 	private VBox vboxDeplacement;
 	private Label lblCompteurTemps;
@@ -202,8 +202,9 @@ public class InterfaceGrapiqueRushHour extends Application implements Runnable {
 			
 			
 			for(Voiture voiture:lstvVoitures) {
-				paneGaucheGrille.setLayoutX(voiture.getDblX());
-				paneGaucheGrille.setLayoutY(voiture.getDblY());
+				
+				voiture.setLayoutX(voiture.getDblX());
+				voiture.setLayoutY(voiture.getDblY());
 			
 				System.out.println(voiture.toString());
 				

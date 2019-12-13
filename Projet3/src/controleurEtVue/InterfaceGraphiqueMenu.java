@@ -31,7 +31,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import modele.LectureDesDonnees;
+
 import modele.Voiture;
 
 public class InterfaceGraphiqueMenu extends Application {

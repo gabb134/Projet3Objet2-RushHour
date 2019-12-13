@@ -38,8 +38,7 @@ public class LectureDonnees2 {
 		 String auto = "auto";
 		 String camion = "camion";
 		 
-		 double dblx;
-		 double dbly;
+		
 		 
 		 
 		 try {
@@ -81,8 +80,8 @@ public class LectureDonnees2 {
 						}
 						
 						//les coordonees
-						dblx = 45+colonne*72;
-						dbly = 70+ligne*72;
+						double dblx = 45+colonne*72;
+						double dbly = 70+ligne*72;
 						
 						System.out.println("Dans le constructeur\nx: "+dblx+" y : "+dbly+"\n");
 						
