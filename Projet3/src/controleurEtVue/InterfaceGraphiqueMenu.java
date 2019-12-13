@@ -47,6 +47,8 @@ public class InterfaceGraphiqueMenu extends Application {
 	// DIFFICILE
 	private ImageView imageDifficile;
 	private int intNiveau;
+	
+	
 
 	@Override
 	public void start(Stage primaryStage) {
