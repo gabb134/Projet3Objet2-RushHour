@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 
 import modele.LectureDonnees2;
 import modele.Voiture;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -221,6 +222,16 @@ public class InterfaceGrapiqueRushHour extends Application implements Runnable {
 
 				voiture.setLayoutX(voiture.getDblX());
 				voiture.setLayoutY(voiture.getDblY());
+				
+				voiture.setOnMouseEntered(mouseEntered->{ //lorque le curseur entre dans la voiture
+					
+					if(voiture.getDirection().getStrOrientation()=="H")
+						scene.setCursor(Cursor.H_RESIZE);
+						else
+							scene.setCursor(Cursor.V_RESIZE);
+					
+					
+				});
 
 				voiture.setOnMousePressed(mousePressed -> {// tu gardes les coordonnées de la souris dans un point .
 					xPrecedent = mousePressed.getX();
@@ -240,12 +251,29 @@ public class InterfaceGrapiqueRushHour extends Application implements Runnable {
 					
 					
 					
+					//pour les collisions des bordures
+					if(voiture.getLongueur()==2) {	//auto
+						if((45+(72*6) >= pendantleDragX+(2*72)) &&(70+(72*6) >= pendantleDragY+(2*72)) ){
+							//pour faire en sorte que je me déplace selon l'orianetation des voitures
+							if(voiture.getDirection().getStrOrientation()=="H")
+							voiture.setLayoutX(pendantleDragX);
+							else
+							voiture.setLayoutY(pendantleDragY);
+							
+						}
+					}
+					else { //camion
+						if((45+(72*6) >= pendantleDragX+(3*72)) &&(70+(72*6) >= pendantleDragY+(3*72)) ){
+							//pour faire en sorte que je me déplace selon l'orianetation des voitures
+							if(voiture.getDirection().getStrOrientation()=="H")
+							voiture.setLayoutX(pendantleDragX);
+							else
+							voiture.setLayoutY(pendantleDragY);
+							
+						}
+					}
 					
-					//pour faire en sorte que je me déplace selon l'orianetation des voitures
-					if(voiture.getDirection().getStrOrientation()=="H")
-					voiture.setLayoutX(pendantleDragX);
-					else
-					voiture.setLayoutY(pendantleDragY);
+					
 					
 					
 					
@@ -257,7 +285,7 @@ public class InterfaceGrapiqueRushHour extends Application implements Runnable {
 				voiture.setOnMouseReleased(mouseReleased ->{ //La voiture est placée et ses coordonnées sont mises à jour. 
 					voiture.setDblX(intDeplacementXPosition);
 					voiture.setDblY(intDeplacementYposition);
-					
+					scene.setCursor(Cursor.DEFAULT);
 					voiture.setEffect(null);
 					nbDeplacementVoiture++;
 					lblDeplacements.setText(Integer.toString(nbDeplacementVoiture));
