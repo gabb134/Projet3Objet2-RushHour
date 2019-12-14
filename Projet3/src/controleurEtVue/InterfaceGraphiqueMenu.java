@@ -49,6 +49,8 @@ public class InterfaceGraphiqueMenu extends Application {
 	private int intNiveau;
 	
 	
+	
+	
 
 	@Override
 	public void start(Stage primaryStage) {
