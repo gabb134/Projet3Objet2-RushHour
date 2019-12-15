@@ -13,10 +13,11 @@ public class Voiture extends ImageView {
 	private int colonne;
 	private int ligne;
 	private EnumDirectionVoitures direction;
-	//private int[][] tabVoiture = new int[6][6];
+	
 	String fichierImageVoture;
 	double dblX;
 	double dblY;
+	
 	
 
 

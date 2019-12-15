@@ -150,6 +150,7 @@ public class InterfaceGraphiqueMenu extends Application {
 
 			imageFacile.setOnMouseClicked(new EventHandler<Event>() {
 
+				
 				@Override
 				public void handle(Event e) {
 					// TODO Auto-generated method stub

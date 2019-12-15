@@ -5,12 +5,14 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
 public class LectureDonnees2 {
 	private ArrayList<Voiture> lstVoitures = new ArrayList<Voiture>();
 	private String strFichierLu = "";
+	private int[][] tabVoiture = new int[6][6];
 	
 	public LectureDonnees2(int numNiveau) {
 		
@@ -88,6 +90,14 @@ public class LectureDonnees2 {
 						Voiture voiture = new Voiture(couleur, longueur, colonne, ligne, direction, fichierVoiture, dblx, dbly);
 						
 						lstVoitures.add(voiture);
+						
+						
+						
+						//attribue des 1 lorsque'il y a une voiture, et attribued es 0 lorsqu'il y en a pas
+						
+				
+					
+						
 						//System.out.println(directionFacile.getStrOrientation());
 						
 					} catch (NoSuchElementException e) {
@@ -99,6 +109,7 @@ public class LectureDonnees2 {
 				// TODO Auto-generated catch block
 				System.out.println(e.toString());
 			}
+			System.out.println(Arrays.deepToString(tabVoiture));
 	}
 
 	public ArrayList<Voiture> getLstVoitures() {
