@@ -276,7 +276,7 @@ System.out.println("les coordinnee des position pendant le drag des voitures");
 								}
 								
 							} else {
-								if(70 <=  pendantleDragX && pendantleDragY <=290) {
+								if(70 <=  pendantleDragY && pendantleDragY <=370) {
 									System.out.println("Pos Verticale");
 									voiture.setLayoutY(pendantleDragY);
 								}
