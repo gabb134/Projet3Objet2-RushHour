@@ -255,16 +255,69 @@ System.out.println("les coordinnee des position pendant le drag des voitures");
 					
 					//345
 					//289
-					if(45 <= pendantleDragX && 70 <= pendantleDragY && 345>= pendantleDragX && 289 >=pendantleDragY) {
+					/*if(45 <= pendantleDragX && 70 <= pendantleDragY ) {
 						if (voiture.getDirection().getStrOrientation() == "H") {
 
 							voiture.setLayoutX(pendantleDragX);
 						} else {
 							voiture.setLayoutY(pendantleDragY);
 						}
+					}*/
+					
+					
+					
+					if(voiture.getLongueur()==2) {//auto
+						System.out.println("auto");
+					
+							if (voiture.getDirection().getStrOrientation() == "H") {
+								if(45 <= pendantleDragX && pendantleDragX <=345  ) {
+									System.out.println("Pos Horinzontale");
+									voiture.setLayoutX(pendantleDragX);
+								}
+								
+							} else {
+								if(70 <=  pendantleDragX && pendantleDragY <=290) {
+									System.out.println("Pos Verticale");
+									voiture.setLayoutY(pendantleDragY);
+								}
+								
+							
+							}
+						
+						
+					}
+					else {//camion
+						System.out.println("camion");
+
+						if (voiture.getDirection().getStrOrientation() == "H") {
+							if(45 <= pendantleDragX && pendantleDragX <=270  ) {
+								System.out.println("Pos Horinzontale");
+								voiture.setLayoutX(pendantleDragX);
+							}
+							
+						} else {
+							if(70 <=  pendantleDragY && pendantleDragY <=290) {
+								System.out.println("Pos Verticale");
+								voiture.setLayoutY(pendantleDragY);
+							}
+							
+						
+						}
+						
 					}
 					
 					
+					
+					
+					
+				/*	if( 345> pendantleDragX && 289 >pendantleDragY) {
+						if (voiture.getDirection().getStrOrientation() == "H") {
+
+							voiture.setLayoutX(pendantleDragX);
+						} else {
+							voiture.setLayoutY(pendantleDragY);
+						}
+					}*/
 					
 					
 					
