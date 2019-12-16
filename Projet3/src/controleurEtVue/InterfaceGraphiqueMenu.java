@@ -33,6 +33,12 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import modele.Voiture;
+/**
+ * Interface graphique qui permet de démarer le jeu RushHour.
+ *
+ * @author Gabriel Marrero
+ * @version 1.0 2019-12-15
+ */
 
 public class InterfaceGraphiqueMenu extends Application {
 	private BorderPane root;
@@ -51,6 +57,7 @@ public class InterfaceGraphiqueMenu extends Application {
 	
 	
 	
+	/** Permet de démarrrer le primarystage pour pouvoir ouvrir le meu du jeu. */ 
 
 	@Override
 	public void start(Stage primaryStage) {

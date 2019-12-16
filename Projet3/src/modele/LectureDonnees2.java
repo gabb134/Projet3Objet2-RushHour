@@ -8,7 +8,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
-
+/**
+ * Classe qui permet de lire les trois fichier suivant : f1.txt, f2.txt, f3.txt, afin de remplir 
+ * Un arrayList qui va contenir tous les voitures.
+ *
+ * @author Gabriel Marrero
+ * @version 1.0 2019-12-15
+ */
 public class LectureDonnees2 {
 	private ArrayList<Voiture> lstVoitures = new ArrayList<Voiture>();
 	private String strFichierLu = "";
@@ -111,6 +117,17 @@ public class LectureDonnees2 {
 			}
 			
 	}
+	/**Les getters et les setters
+	 *
+	 * C'est méthodes permettent aux variables privée d'être utilisé ailleurs
+	 *
+	 * @param <lstVoitures> <fonction>
+	 * @param <strFichierLu> <fonction>
+	 
+	 * @return <Elles retournent les variables en tant que tel>
+	 * @throws <Aucune exception est lancée manuellement>
+	 */ 
+
 
 	public ArrayList<Voiture> getLstVoitures() {
 		return lstVoitures;

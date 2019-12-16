@@ -48,7 +48,12 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-
+/**
+ * Interface graphique qui permet d'implémenter l'arlorithme du jeu RushHour.
+ *
+ * @author Gabriel Marrero
+ * @version 1.0 2019-12-15
+ */
 public class InterfaceGrapiqueRushHour extends Application implements Runnable {
 
 	private BorderPane root;
@@ -81,12 +86,13 @@ public class InterfaceGrapiqueRushHour extends Application implements Runnable {
 	private boolean booGagner = false;
 	private int[][] tabVoiture;
 
+	/**Constructeur qui permet de passer un int afin de savoir le niveau que l'utilisateur désire jouer. */
 	public InterfaceGrapiqueRushHour(int intNiveau) {
 		super();
 		this.intNiveau = intNiveau;
 
 	}
-
+	/** Permet de démarrrer le primarystage pour pouvoir ouvrir le jeu. */
 	public void start(Stage primaryStage) {
 		try {
 			root = new BorderPane();
@@ -173,6 +179,7 @@ public class InterfaceGrapiqueRushHour extends Application implements Runnable {
 			btnRetourAuMenu.setBorder(border);
 			btnRetourAuMenu.setOnAction(new EventHandler<ActionEvent>() {
 
+				/**Gestionnaire d'évennement qui permet de revenir au menu du jeu. */
 				@Override
 				public void handle(ActionEvent e) {
 					// TODO Auto-generated method stub
@@ -187,6 +194,7 @@ public class InterfaceGrapiqueRushHour extends Application implements Runnable {
 			});
 			btnReinitialiser.setOnAction(new EventHandler<ActionEvent>() {
 
+				/**Gestionnaire d'évennement qui permet de réinitialiser le jeu. */
 				@Override
 				public void handle(ActionEvent e) {
 					// TODO Auto-generated method stub
@@ -242,6 +250,7 @@ public class InterfaceGrapiqueRushHour extends Application implements Runnable {
 					DropShadow bordure = new DropShadow();
 					bordure.setColor(Color.RED);
 					voiture.setEffect(bordure);
+				
 
 				});
 
@@ -254,25 +263,31 @@ public class InterfaceGrapiqueRushHour extends Application implements Runnable {
 																										// drag ca prend
 																										// la position
 
-					//xDeplacement = mouseDragged.getX();
-					//yDeplacement = mouseDragged.getY();
+					if(voiture.getCouleur()=="rouge")
+						System.out.println("rouge");
+					// xDeplacement = mouseDragged.getX();
+					// yDeplacement = mouseDragged.getY();
 
 					// pour les collisions des bordures
-					
-					
-					
+					for (int i = 0; i < tabVoiture.length; i++) {
+						for (int j = 0; j < tabVoiture.length; j++) {
+
 							if (voiture.getLongueur() == 2) {// auto
-								//System.out.println("auto");
+								// System.out.println("auto");
 
 								if (voiture.getDirection().getStrOrientation() == "H") {
-									if (45 <= pendantleDragX && pendantleDragX <= 345 && tabVoiture[voiture.getLigne()][voiture.getColonne()]!=1 ) {
-										//System.out.println("Pos Horinzontale");
-					
-										voiture.setLayoutX(pendantleDragX);
-										
-										System.out.println(tabVoiture[voiture.getLigne()][voiture.getColonne()]);
-									}
+									 
 
+								
+									if (45 <= pendantleDragX && pendantleDragX <= 345) {
+										// System.out.println("Pos Horinzontale");
+
+										// System.out.println(tabVoiture[voiture.getLigne()+i][voiture.getColonne()]);
+
+										
+										voiture.setLayoutX(pendantleDragX);
+									}
+									
 								} else {
 									if (70 <= pendantleDragY && pendantleDragY <= 370) {
 										System.out.println("Pos Verticale");
@@ -299,13 +314,16 @@ public class InterfaceGrapiqueRushHour extends Application implements Runnable {
 								}
 
 							}
-
+							
+						}
 				
-					
-					//System.out.println("x: " + pendantleDragX + " y: " + pendantleDragY);
+					}
 
-					//intDeplacementXPosition = (int) (xDeplacement - xPrecedent);
-					//intDeplacementYposition = (int) (yDeplacement - yPrecedent);
+
+					// System.out.println("x: " + pendantleDragX + " y: " + pendantleDragY);
+
+					// intDeplacementXPosition = (int) (xDeplacement - xPrecedent);
+					// intDeplacementYposition = (int) (yDeplacement - yPrecedent);
 					// System.out.println("sda"+intDeplacementXPosition);
 
 				});
@@ -320,9 +338,9 @@ public class InterfaceGrapiqueRushHour extends Application implements Runnable {
 
 				});
 
-		
-
 				System.out.println("longeur :" + voiture.getLongueur());
+				
+			
 
 				paneGaucheGrille.getChildren().addAll(voiture);
 				// System.out.println("Dans le pane \nx: " + voiture.getDblX() + " y : " +
@@ -354,6 +372,7 @@ public class InterfaceGrapiqueRushHour extends Application implements Runnable {
 	}
 
 	/**************** METHOD QUI PERMET DAFFICHER LE TEMPS ****************/
+	/** Permet de créé un chronomètre qui calcul le temps en minutes et en secondes. */
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
@@ -379,7 +398,7 @@ public class InterfaceGrapiqueRushHour extends Application implements Runnable {
 		}
 
 	}
-
+	/** Permet de démarrrer l'application */
 	public static void main(String[] args) {
 		launch(args);
 	}
