@@ -109,7 +109,7 @@ public class LectureDonnees2 {
 				// TODO Auto-generated catch block
 				System.out.println(e.toString());
 			}
-			System.out.println(Arrays.deepToString(tabVoiture));
+			
 	}
 
 	public ArrayList<Voiture> getLstVoitures() {

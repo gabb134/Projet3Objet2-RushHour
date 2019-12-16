@@ -79,7 +79,7 @@ public class InterfaceGrapiqueRushHour extends Application implements Runnable {
 
 	private ArrayList<Voiture> lstvVoitures;
 	private boolean booGagner = false;
-	private int[][] tabVoiture = new int[6][6];
+	private int[][] tabVoiture;
 
 	public InterfaceGrapiqueRushHour(int intNiveau) {
 		super();
@@ -222,6 +222,7 @@ public class InterfaceGrapiqueRushHour extends Application implements Runnable {
 			// variables necessaires
 			System.out.println("les coordinnee des position pendant le drag des voitures");
 			for (Voiture voiture : lstvVoitures) {
+				tabVoiture = voiture.getTabVoiture();
 
 				voiture.setLayoutX(voiture.getDblX());
 				voiture.setLayoutY(voiture.getDblY());
@@ -253,59 +254,59 @@ public class InterfaceGrapiqueRushHour extends Application implements Runnable {
 																										// drag ca prend
 																										// la position
 
-					xDeplacement = mouseDragged.getX();
-					yDeplacement = mouseDragged.getY();
+					//xDeplacement = mouseDragged.getX();
+					//yDeplacement = mouseDragged.getY();
 
 					// pour les collisions des bordures
-					if (voiture.getLongueur() == 2) {// auto
-						System.out.println("auto");
+					
+					
+					
+							if (voiture.getLongueur() == 2) {// auto
+								//System.out.println("auto");
 
-						if (voiture.getDirection().getStrOrientation() == "H") {
-							if (45 <= pendantleDragX && pendantleDragX <= 345 ) {
-								System.out.println("Pos Horinzontale");
+								if (voiture.getDirection().getStrOrientation() == "H") {
+									if (45 <= pendantleDragX && pendantleDragX <= 345 && tabVoiture[voiture.getLigne()][voiture.getColonne()]!=1 ) {
+										//System.out.println("Pos Horinzontale");
+					
+										voiture.setLayoutX(pendantleDragX);
+										
+										System.out.println(tabVoiture[voiture.getLigne()][voiture.getColonne()]);
+									}
 
-								voiture.setLayoutX(pendantleDragX);
-								if (voiture.getCouleur().equals("rouge") && voiture.getLayoutX() >= 344) {
+								} else {
+									if (70 <= pendantleDragY && pendantleDragY <= 370) {
+										System.out.println("Pos Verticale");
+										voiture.setLayoutY(pendantleDragY);
+									}
+
+								}
+
+							} else {// camion
+								System.out.println("camion");
+
+								if (voiture.getDirection().getStrOrientation() == "H") {
+									if (45 <= pendantleDragX && pendantleDragX <= 270) {
+										System.out.println("Pos Horinzontale");
+										voiture.setLayoutX(pendantleDragX);
+									}
+
+								} else {
+									if (70 <= pendantleDragY && pendantleDragY <= 290) {
+										System.out.println("Pos Verticale");
+										voiture.setLayoutY(pendantleDragY);
+									}
 
 								}
 
 							}
 
-						} else {
-							if (70 <= pendantleDragY && pendantleDragY <= 370) {
-								System.out.println("Pos Verticale");
-								voiture.setLayoutY(pendantleDragY);
-							}
-
-						}
-
-					} else {// camion
-						System.out.println("camion");
-
-						if (voiture.getDirection().getStrOrientation() == "H") {
-							if (45 <= pendantleDragX && pendantleDragX <= 270) {
-								System.out.println("Pos Horinzontale");
-								voiture.setLayoutX(pendantleDragX);
-							}
-
-						} else {
-							if (70 <= pendantleDragY && pendantleDragY <= 290) {
-								System.out.println("Pos Verticale");
-								voiture.setLayoutY(pendantleDragY);
-							}
-
-						}
-
-					}
-
-					System.out.println("x: " + pendantleDragX + " y: " + pendantleDragY);
-
-					// pour les colisions entre les voitures
-
-					intDeplacementXPosition = (int) (xDeplacement - xPrecedent);
-					intDeplacementYposition = (int) (yDeplacement - yPrecedent);
-				//	System.out.println("sda"+intDeplacementXPosition);
+				
 					
+					//System.out.println("x: " + pendantleDragX + " y: " + pendantleDragY);
+
+					//intDeplacementXPosition = (int) (xDeplacement - xPrecedent);
+					//intDeplacementYposition = (int) (yDeplacement - yPrecedent);
+					// System.out.println("sda"+intDeplacementXPosition);
 
 				});
 				voiture.setOnMouseReleased(mouseReleased -> { // La voiture est placée et ses coordonnées sont mises à
@@ -319,7 +320,9 @@ public class InterfaceGrapiqueRushHour extends Application implements Runnable {
 
 				});
 
-				// System.out.println(voiture.toString());
+		
+
+				System.out.println("longeur :" + voiture.getLongueur());
 
 				paneGaucheGrille.getChildren().addAll(voiture);
 				// System.out.println("Dans le pane \nx: " + voiture.getDblX() + " y : " +
@@ -331,8 +334,13 @@ public class InterfaceGrapiqueRushHour extends Application implements Runnable {
 				System.out.println("gagner");
 				primaryStage.close();
 			}
-
-			System.out.println(Arrays.deepToString(tabVoiture));
+			// affichage du tableau
+			for (int i = 0; i < tabVoiture.length; i++) {
+				for (int j = 0; j < tabVoiture.length; j++) {
+					System.out.print(tabVoiture[i][j] + "|");
+				}
+				System.out.println();
+			}
 
 			primaryStage.setScene(scene);
 			// primaryStage.sizeToScene();

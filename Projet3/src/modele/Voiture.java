@@ -13,7 +13,12 @@ public class Voiture extends ImageView {
 	private int colonne;
 	private int ligne;
 	private EnumDirectionVoitures direction;
-	
+	private int[][] tabVoiture ;
+
+
+
+
+
 	String fichierImageVoture;
 	double dblX;
 	double dblY;
@@ -34,10 +39,38 @@ public class Voiture extends ImageView {
 		this.dblX = dblX;
 		this.dblY = dblY;
 		this.setImage(new Image(fichierImageVoture)); //associe l'image a l'objet voiture
+		
+		this.tabVoiture = new int[6][6];
+
+		if (direction.getStrOrientation() == "H") {
+			for (int i = 0; i < longueur; i++) {
+				tabVoiture[(int) ligne][(int) colonne+i] =1;
+				
+			}
+		} else {
+			for (int i = 0; i < longueur; i++) {
+				tabVoiture[(int) ligne+i][(int) colonne] =1;
+			}
+		}
+
+		/*for(int i = 0; i < tabVoiture.length;i++) {
+			for(int j = 0; j < tabVoiture.length;j++) {
+				tabVoiture[i][j] = 1;
+			}
+		}*/
+	}
+
+
+	public int[][] getTabVoiture() {
+		return tabVoiture;
 	}
 
 
 
+
+	public void setTabVoiture(int[][] tabVoiture) {
+		this.tabVoiture = tabVoiture;
+	}
 
 	public String getCouleur() {
 		return couleur;
